@@ -7,7 +7,7 @@ const webRouters = require("./routers/web");
 const adminRouter = require("./routers/admin");
 const cors = require("cors");
 const compression = require("compression");
-
+require("dotenv").config();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors());
