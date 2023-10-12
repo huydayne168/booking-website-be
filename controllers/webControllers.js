@@ -47,20 +47,24 @@ exports.getSearchHotel = (req, res, next) => {
     const options = req.query.options;
     const minPrice = req.query.minPrice;
     const maxPrice = req.query.maxPrice;
-
+    console.log(destination);
     Hotel.find()
         .then((hotels) => {
             const searchedHotels = hotels.filter((hotel) => {
                 if (maxPrice > 0) {
                     return (
-                        hotel.city === destination &&
+                        hotel.city
+                            .toLowerCase()
+                            .includes(destination.toLowerCase()) &&
                         hotel.rooms.length >= options.room &&
                         Number(hotel.cheapestPrice) >= minPrice &&
                         Number(hotel.cheapestPrice) <= maxPrice
                     );
                 } else {
                     return (
-                        hotel.city === destination &&
+                        hotel.city
+                            .toLowerCase()
+                            .includes(destination.toLowerCase()) &&
                         hotel.rooms.length >= options.room &&
                         Number(hotel.cheapestPrice) >= minPrice
                     );
